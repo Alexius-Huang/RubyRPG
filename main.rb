@@ -1,0 +1,1 @@
+puts "Start my RubyRPG project!"

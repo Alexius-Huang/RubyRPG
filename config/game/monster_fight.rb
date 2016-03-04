@@ -12,7 +12,7 @@ module MonsterFight
 	def dialogue
 		puts "\tHere comes a #{@monster.name}!"
 		new_line
-		while true
+		while $BATTLE_START_TOKEN
 			striped_line
 			puts "\t#{@monster.name.yellow}"
 			puts "\tHP  | #{@monster.hp}"
@@ -42,12 +42,31 @@ module MonsterFight
 		delay
 		puts "\tYou caused #{@damage} damage on #{@monster.name}!" if @damage > 0
 		puts "\tThe monster does not being harm..." if @damage <= 0
+		@monster.hp -= @damage
+		
+		if @monster.hp <= 0
+			puts "\tThe #{@monster.name} is dead!"
+			puts "\tYou gained #{@monster.exp} EXP point!"
+			@character.exp += @monster.exp
+			new_line
+			$BATTLE_START_TOKEN = false
+			return
+		end
+		
 		sleep 0.5
+
 		print "\t#{@monster.name} is ready attacking you."
 		@damage = damage(@monster, @character)
 		delay
 		puts "\tYou've got #{@damage} damage from #{@monster.name}!" if @damage > 0
 		puts "\tYou dodged the attack from #{@monster.name}!" if @damage <= 0 
+		@character.hp -= @damage
+
+		if @character.hp <= 0
+			puts "\tOh no! You are dead!"
+			raise CharacterDeadError, "Your character unfortunately dead!"
+		end
+
 		new_line
 	end
 

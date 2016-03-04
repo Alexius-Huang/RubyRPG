@@ -6,6 +6,7 @@ module Explore
 		case $RANDOM_TOKEN
 			when  1...33
 				include MonsterFight
+				$BATTLE_START_TOKEN = true
 				monster_fight
 			when 33...66
 			# find_treasure

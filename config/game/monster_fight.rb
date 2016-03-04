@@ -4,7 +4,8 @@ require 'colorize'
 
 module MonsterFight
 	def monster_fight
-		@monster = $MONSTER_DATABASE[Random.new.rand(0..1)]
+		random_token_generator(0..1)
+		@monster = $MONSTER_DATABASE[$RANDOM_TOKEN]
 		@character = $CHARACTER
 		dialogue
 	end
@@ -49,6 +50,8 @@ module MonsterFight
 			puts "\tYou gained #{@monster.exp} EXP point!"
 			@character.exp += @monster.exp
 			new_line
+
+			refresh_monster_data
 			$BATTLE_START_TOKEN = false
 			return
 		end
@@ -64,7 +67,7 @@ module MonsterFight
 
 		if @character.hp <= 0
 			puts "\tOh no! You are dead!"
-			raise CharacterDeadError, "Your character unfortunately dead!"
+			raise CharacterDeadError
 		end
 
 		new_line
@@ -74,5 +77,10 @@ module MonsterFight
 		d = (active.attack * Random.new.rand(0.6..1.0)) - (passive.defense * Random.new.rand(0.6..1.0))
 		return 0 if d < 0
 		return d.to_i
+	end
+
+	def refresh_monster_data
+		@monster.hp = $MONSTERS[$RANDOM_TOKEN][0]
+		@monster.mp = $MONSTERS[$RANDOM_TOKEN][1]
 	end
 end

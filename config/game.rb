@@ -8,11 +8,16 @@ module NewGame
 		# Setup character's parameters
 		puts "\tEnter your character's name ~"
 		print "\t>>> "
-		character_name = gets.chomp!
-		$CHARACTER = Character.new(character_name, 20, 5, 0, 5, 3)
+
+		$CHARACTER = Character.new(gets.chomp!, 20, 5, 0, 5, 3)
 		$CHARACTER_MAX_HP = $CHARACTER_HP = 20
 		$CHARACTER_MAX_MP = $CHARACTER_MP = 5
 		$CHARACTER_MAX_EXP = $CHARACTER_EXP = 0
+
+		$CHARACTER = Character.new(gets.chomp, 20, 5, 0, 5, 3)
+		$CHARACTER_MAX_HP = 20
+		$CHARACTER_MAX_MP = 5
+		$CHARACTER_MAX_EXP = 0
 		$CHARACTER_ATTACK = 5
 		$CHARACTER_DEFENSE = 2
 		$PROCESS_GAME_TOKEN = true
@@ -29,7 +34,7 @@ end
 
 module ProcessGame
 	def process
-		while true
+		loop do
 			striped_line
 			show_current_state
 			striped_line
@@ -44,13 +49,10 @@ module ProcessGame
 					include Explore
 					random_token_generator(1..100)
 					explore
-				when 2
-				when 3
-				when 4
+				when 2, 3, 4
 					puts "\tBye Bye ~!"
 					$PROCESS_GAME_TOKEN = false
 					$QUIT_GAME_TOKEN = true
-					break
 			end
 		end
 	end

@@ -10,11 +10,11 @@ module NewGame
 		print "\t>>> "
 		character_name = gets.chomp!
 		$CHARACTER = Character.new(character_name, 20, 5, 0, 5, 3)
-		$CHARACTER_MAX_HP = 20
-		$CHARACTER_MAX_MP = 5
-		$CHARACTER_MAX_EXP = 0
+		$CHARACTER_MAX_HP = $CHARACTER_HP = 20
+		$CHARACTER_MAX_MP = $CHARACTER_MP = 5
+		$CHARACTER_MAX_EXP = $CHARACTER_EXP = 0
 		$CHARACTER_ATTACK = 5
-		$CHARACTER_DEFENSE = 3
+		$CHARACTER_DEFENSE = 2
 		$PROCESS_GAME_TOKEN = true
 		new_line
 	end
@@ -58,7 +58,7 @@ module ProcessGame
 	def show_current_state
 		puts "\t#{$CHARACTER.name}"
 		puts "\tHP  | #{$CHARACTER.hp}"
-		puts "\tMP  | #{$CHARACTER.hp}"
+		puts "\tMP  | #{$CHARACTER.mp}"
 		puts "\tEXP | #{$CHARACTER.exp}"
 	end
 

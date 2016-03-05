@@ -1,6 +1,7 @@
 require_relative 'config_helper'
 require_relative 'game/explore'
 require_relative 'game/character'
+require 'colorize'
 
 module NewGame
 	def new_game
@@ -54,10 +55,10 @@ module ProcessGame
 	end
 
 	def show_current_state
-		puts "\t#{$CHARACTER.name}"
-		puts "\tHP  | #{$CHARACTER.hp}"
-		puts "\tMP  | #{$CHARACTER.mp}"
-		puts "\tEXP | #{$CHARACTER.exp}"
+		puts "\t<<< #{$CHARACTER.name.light_yellow} >>>"
+		puts "\tHP  | #{$CHARACTER.hp.to_s.light_red}"
+		puts "\tMP  | #{$CHARACTER.mp.to_s.blue}"
+		puts "\tEXP | #{$CHARACTER.exp.to_s.light_green}"
 	end
 
 end

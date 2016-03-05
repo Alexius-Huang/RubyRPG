@@ -2,7 +2,7 @@ require_relative '../config_helper'
 
 module EscapeBattle
 	def escape
-		print "\tYou are trying to escape"
+		print "\tYou".light_yellow + " are trying to escape"
 		delay
 		new_line
 
@@ -10,27 +10,27 @@ module EscapeBattle
 		@character_agility = Random.new.rand(1..@character.agility)
 
 		if @character_agility > @monster_agility
-			puts "\tYou have successfully slipped away from the"
-			puts "\t#{@monster.name}, luck you!"
+			puts "\tYou".light_yellow + " have successfully slipped away from the"
+			puts "\t#{@monster.name.light_magenta}, lucky " + "you".light_yellow + "!"
 			new_line
 			$BATTLE_START_TOKEN = false
 			return
 		else
-			puts "\tThe monster #{@monster.name} unfortunately"
-			puts "\tcatached you!"
+			puts "\tThe monster #{@monster.name.light_magenta} unfortunately"
+			puts "\tcatached " + "you".light_yellow + "!"
 			new_line
-			print "\tThe #{@monster.name} is ready to attack you"
+			print "\tThe #{@monster.name.light_magenta} is ready to attack you"
 			delay
 
 			@damage = damage(@monster, @character)
 
-			puts "\tYou've got #{@damage} damage from #{@monster.name}!" if @damage > 0
-			puts "\tYou dodged the attack from #{@monster.name}!" if @damage <= 0
+			puts "\tYou".light_yellow + "'ve got #{@damage.to_s.light_red} damage from #{@monster.name.light_magenta}!" if @damage > 0
+			puts "\tYou".light_yellow + " dodged the attack from #{@monster.name.light_magenta}!" if @damage <= 0
 			@character.hp -= @damage
 
 
 			if @character.hp <= 0
-				puts "\tOh no! You are dead!"
+				puts "\tOh no! You are dead!".light_red
 				raise CharacterDeadError
 			end
 		end

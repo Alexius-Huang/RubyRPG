@@ -12,21 +12,22 @@ module MonsterFight
 	end
 
 	def dialogue
-		puts "\tHere comes a #{@monster.name}!"
+		puts "\tHere comes a #{@monster.name.light_magenta}!"
 		new_line
 		while $BATTLE_START_TOKEN
 			striped_line
-			puts "\t#{@monster.name.yellow}"
-			puts "\tHP  | #{@monster.hp}"
-			puts "\tMP  | #{@monster.mp}"
-			puts "\t#{@character.name.yellow}"
-			puts "\tHP  | #{@character.hp}"
-			puts "\tMP  | #{@character.mp}"
+			puts "\t<<< #{@monster.name.light_magenta} >>>"
+			puts "\tHP  | #{@monster.hp.to_s.light_red}"
+			puts "\tMP  | #{@monster.mp.to_s.blue}"
+			puts "\t<<< #{@character.name.light_yellow} >>>"
+			puts "\tHP  | #{@character.hp.to_s.light_red}"
+			puts "\tMP  | #{@character.mp.to_s.blue}"
 			striped_line
 
-			option_list(3,
-				"Attack #{@monster.name}",
-				"Defense",
+			option_list(4,
+				"Attack #{@monster.name.light_magenta}",
+				"Use Skill",
+				"Use Potion",
 				"Try Escape"
 			)
 			case $SELECT_TOKEN
@@ -34,6 +35,7 @@ module MonsterFight
 					battle
 				when 2
 				when 3
+				when 4
 					include EscapeBattle
 					escape
 			end
@@ -43,16 +45,16 @@ module MonsterFight
 #------------------- Separate Line -------------------#
 
 	def battle
-		print "\tYou are trying to attack #{@monster.name}"
+		print "\tYou".light_yellow + " are trying to attack #{@monster.name.light_magenta}"
 		@damage = damage(@character, @monster)
 		delay
-		puts "\tYou caused #{@damage} damage on #{@monster.name}!" if @damage > 0
+		puts "\tYou".light_yellow + " caused #{@damage.to_s.light_red} damage on #{@monster.name.light_magenta}!" if @damage > 0
 		puts "\tThe monster does not being harm..." if @damage <= 0
 		@monster.hp -= @damage
 		
 		if @monster.hp <= 0
-			puts "\tThe #{@monster.name} is dead!"
-			puts "\tYou gained #{@monster.exp} EXP point!"
+			puts "\tThe #{@monster.name.light_magenta} is dead!"
+			puts "\tYou".light_yellow + " gained #{@monster.exp.to_s.light_green} EXP point!"
 			@character.exp += @monster.exp
 			new_line
 
@@ -63,15 +65,15 @@ module MonsterFight
 		
 		sleep 0.5
 
-		print "\t#{@monster.name} is ready attacking you."
+		print "\t#{@monster.name.light_magenta} is ready attacking " + "you".light_yellow + "."
 		@damage = damage(@monster, @character)
 		delay
-		puts "\tYou've got #{@damage} damage from #{@monster.name}!" if @damage > 0
-		puts "\tYou dodged the attack from #{@monster.name}!" if @damage <= 0 
+		puts "\tYou".light_yellow + "'ve got #{@damage.to_s.light_red} damage from #{@monster.name.light_magenta}!" if @damage > 0
+		puts "\tYou".light_yellow + " dodged the attack from #{@monster.name.light_magenta}!" if @damage <= 0 
 		@character.hp -= @damage
 
 		if @character.hp <= 0
-			puts "\tOh no! You are dead!"
+			puts "\tOh no! You are dead!".light_red
 			raise CharacterDeadError
 		end
 

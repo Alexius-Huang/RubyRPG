@@ -1,5 +1,5 @@
 require_relative '../config_helper'
-require_relative 'monster_fight'
+require_relative 'monster/monster_fight'
 
 module Explore
 	def explore

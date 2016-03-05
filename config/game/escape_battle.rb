@@ -17,7 +17,7 @@ module EscapeBattle
 			return
 		else
 			puts "\tThe monster #{@monster.name.light_magenta} unfortunately"
-			puts "\tcatached " + "you".light_yellow + "!"
+			puts "\tcatched " + "you".light_yellow + "!"
 			new_line
 			print "\tThe #{@monster.name.light_magenta} is ready to attack you"
 			delay

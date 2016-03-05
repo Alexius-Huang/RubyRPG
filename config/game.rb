@@ -1,4 +1,5 @@
 require_relative 'config_helper'
+require_relative 'game/game_helper'
 require_relative 'game/explore'
 require_relative 'game/character'
 require 'colorize'
@@ -13,7 +14,7 @@ module NewGame
 		$CHARACTER = Character.new(gets.chomp, 20, 5, 0, 5, 2, 3)
 		$CHARACTER_MAX_HP = 20
 		$CHARACTER_MAX_MP = 5
-		$CHARACTER_MAX_EXP = 0
+		$CHARACTER_MAX_EXP = 10
 		$CHARACTER_ATTACK = 5
 		$CHARACTER_DEFENSE = 2
 		$CHARACTER_AGILITY = 3
@@ -30,8 +31,9 @@ module NewGame
 end
 
 module ProcessGame
+	include GameHelper
 	def process
-		loop do
+		while $PROCESS_GAME_TOKEN
 			striped_line
 			show_current_state
 			striped_line
@@ -46,19 +48,17 @@ module ProcessGame
 					include Explore
 					random_token_generator(1..100)
 					explore
-				when 2, 3, 4
+				when 2
+				when 3
+				when 4
 					puts "\tBye Bye ~!"
+					new_line
 					$PROCESS_GAME_TOKEN = false
 					$QUIT_GAME_TOKEN = true
 			end
 		end
 	end
-
-	def show_current_state
-		puts "\t<<< #{$CHARACTER.name.light_yellow} >>>"
-		puts "\tHP  | #{$CHARACTER.hp.to_s.light_red}"
-		puts "\tMP  | #{$CHARACTER.mp.to_s.blue}"
-		puts "\tEXP | #{$CHARACTER.exp.to_s.light_green}"
-	end
-
 end
+
+
+

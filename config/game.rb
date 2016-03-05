@@ -9,12 +9,13 @@ module NewGame
 		puts "\tEnter your character's name ~"
 		print "\t>>> "
 
-		$CHARACTER = Character.new(gets.chomp, 20, 5, 0, 5, 3)
+		$CHARACTER = Character.new(gets.chomp, 20, 5, 0, 5, 2, 3)
 		$CHARACTER_MAX_HP = 20
 		$CHARACTER_MAX_MP = 5
 		$CHARACTER_MAX_EXP = 0
 		$CHARACTER_ATTACK = 5
 		$CHARACTER_DEFENSE = 2
+		$CHARACTER_AGILITY = 3
 		$PROCESS_GAME_TOKEN = true
 		new_line
 	end
@@ -56,7 +57,7 @@ module ProcessGame
 		puts "\t#{$CHARACTER.name}"
 		puts "\tHP  | #{$CHARACTER.hp}"
 		puts "\tMP  | #{$CHARACTER.mp}"
-		puts "\tEXP | #{$CHARACTER.exp}"git 
+		puts "\tEXP | #{$CHARACTER.exp}"
 	end
 
 end

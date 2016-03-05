@@ -1,5 +1,6 @@
 require_relative '../config_helper'
 require_relative 'monster'
+require_relative 'escape_battle'
 require 'colorize'
 
 module MonsterFight
@@ -33,9 +34,13 @@ module MonsterFight
 					battle
 				when 2
 				when 3
+					include EscapeBattle
+					escape
 			end
 		end
 	end
+
+#------------------- Separate Line -------------------#
 
 	def battle
 		print "\tYou are trying to attack #{@monster.name}"

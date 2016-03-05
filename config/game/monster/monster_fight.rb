@@ -1,5 +1,5 @@
 require_relative '../../config_helper'
-require_relative '../escape_battle'
+require_relative 'escape_battle'
 require_relative 'monster'
 require_relative 'battle_helper'
 require 'colorize'

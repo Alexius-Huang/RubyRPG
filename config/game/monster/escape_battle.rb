@@ -1,4 +1,4 @@
-require_relative '../config_helper'
+require_relative '../../config_helper'
 
 module EscapeBattle
 	def escape

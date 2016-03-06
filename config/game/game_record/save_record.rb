@@ -8,7 +8,7 @@ module SaveRecord
 		file.puts "----------------------------------------------"
 		file.puts "RECORD FILE NAME       : #{$RECORD_FILE_NAME}"
 		file.puts "RECORD ID              : #{$RECORD_ID}"
-		file.puts "CHARACTER NAME         : #{$CHARACTER_NAME}"
+		file.puts "CHARACTER NAME         : #{$CHARACTER.name}"
 		file.puts "CHARACTER LEVEL        : #{$CHARACTER_LEVEL}"
 		file.puts "CHARACTER CURRENT HP   : #{$CHARACTER.hp}"
 		file.puts "CHARACTER CURRENT MP   : #{$CHARACTER.mp}"

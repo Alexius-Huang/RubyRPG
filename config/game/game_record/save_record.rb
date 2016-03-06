@@ -1,11 +1,15 @@
 module SaveRecord
 	def save_record
-		path_name = "./config/game/game_record/player_records/#{$RECORD_FILE_NAME}"
+		path_name = $RECORD_FOLDER_PATH + "/#{$RECORD_FILE_NAME}"
 
-		file = File.open(path_name, "w") if File.exist? path_name else file = File.new(path_name, "w")
-
-		file.puts "          <<< GAME RECORD FILE >>>"
-		file.puts "----------------------------------------------"
+		if File.exist? path_name 
+			file = File.open(path_name, "w") 
+		else 
+			file = File.new(path_name, "w")
+		end
+		
+		file.puts "            <<< GAME RECORD FILE >>>"
+		file.puts "-" * 50
 		file.puts "RECORD FILE NAME       : #{$RECORD_FILE_NAME}"
 		file.puts "RECORD ID              : #{$RECORD_ID}"
 		file.puts "CHARACTER NAME         : #{$CHARACTER.name}"
@@ -19,7 +23,7 @@ module SaveRecord
 		file.puts "CHARACTER ATTACK       : #{$CHARACTER_ATTACK}"
 		file.puts "CHARACTER DEFENSE      : #{$CHARACTER_DEFENSE}"
 		file.puts "CHARACTER AGILITY      : #{$CHARACTER_AGILITY}"
-		file.puts "----------------------------------------------"
+		file.puts "-" * 50
 		
 		file.close
 	end

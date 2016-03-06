@@ -3,6 +3,7 @@ require_relative 'game/game_helper'
 require_relative 'game/explore'
 require_relative 'game/character'
 require_relative 'game/game_record/save_record'
+require_relative 'game/game_record/load_record'
 require 'colorize'
 
 module NewGame
@@ -34,6 +35,27 @@ module NewGame
 		puts "\t Once upon a time ..."
 		striped_line
 		new_line
+	end
+end
+
+module LoadGame
+	def load_game
+		path_name = "./config/game"
+		print "\tFinding records"
+		delay
+		new_line
+
+		@record_files = []
+		directory = Dir.new($RECORD_FOLDER_PATH)
+		directory.each { |f| @record_files << f unless ( f == "." || f == ".." ) }
+
+		unless @record_files.any?
+			puts "\tOops, there appears no records at all!"
+			return
+		else
+			include LoadRecord
+			load_record
+		end
 	end
 end
 

@@ -20,6 +20,7 @@ module StartEngine
 
 	def exit
 		puts "\tBye Bye ~!"
+		new_line
 		$QUIT_GAME_TOKEN = true
 	end
 end

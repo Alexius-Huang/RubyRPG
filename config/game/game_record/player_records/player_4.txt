@@ -1,12 +1,12 @@
             <<< GAME RECORD FILE >>>
 --------------------------------------------------
-RECORD FILE NAME       : player_2.txt
-RECORD ID              : 2
-CHARACTER NAME         : Max
+RECORD FILE NAME       : player_4.txt
+RECORD ID              : 4
+CHARACTER NAME         : Maxwell
 CHARACTER LEVEL        : 1
-CHARACTER CURRENT HP   : 20
+CHARACTER CURRENT HP   : 19
 CHARACTER CURRENT MP   : 5
-CHARACTER CURRENT EXP  : 0
+CHARACTER CURRENT EXP  : 4
 CHARACTER MAX HP       : 20
 CHARACTER MAX MP       : 5
 CHARACTER MAX EXP      : 10

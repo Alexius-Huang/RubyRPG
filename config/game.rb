@@ -14,6 +14,7 @@ module NewGame
 		print "\t>>> "
 
 		$CHARACTER = Character.new(gets.chomp, 20, 5, 0, 5, 2, 3)
+		$CHARACTER_LEVEL = 1
 		$CHARACTER_MAX_HP = 20
 		$CHARACTER_MAX_MP = 5
 		$CHARACTER_MAX_EXP = 10

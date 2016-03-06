@@ -6,6 +6,14 @@ def striped_line
 	puts "\t" + "-" * 50
 end
 
+# New Method #
+def dynamic_load(text, time)
+	text.length.times do |num|
+		print text[num]
+		sleep time
+	end
+end
+
 def option_list(num, *option)
 	while true
 		puts "\tPlease Enter The Option :"
@@ -37,3 +45,30 @@ def delay
 	sleep 0.5
 	puts '.'
 end
+
+def console
+	new_line
+	puts "\t@monster_name      = #{@monster_name     }"
+	puts "\t@monster_hp        = #{@monster_hp       }" 
+	puts "\t@monster_max_hp    = #{@monster_max_hp   }"
+	puts "\t@monster_mp        = #{@monster_mp       }"
+	puts "\t@monster_max_mp    = #{@monster_max_mp   }"
+	puts "\t@monster_exp       = #{@monster_exp      }"
+	puts "\t@monster_attack    = #{@monster_attack   }"
+	puts "\t@monster_defense   = #{@monster_defense  }"
+	puts "\t@monster_agility   = #{@monster_agility  }"
+	puts "\t$CHARACTER_NAME    = #{$CHARACTER_NAME   }"
+	puts "\t$CHARACTER_LEVEL   = #{$CHARACTER_LEVEL  }"
+	puts "\t$CHARACTER_MAX_HP  = #{$CHARACTER_MAX_HP }"
+	puts "\t$CHARACTER_MAX_MP  = #{$CHARACTER_MAX_MP }"
+	puts "\t$CHARACTER_MAX_EXP = #{$CHARACTER_MAX_EXP}"
+	puts "\t$CHARACTER_ATTACK  = #{$CHARACTER_ATTACK }"
+	puts "\t$CHARACTER_DEFENSE = #{$CHARACTER_DEFENSE}"
+	puts "\t$CHARACTER_AGILITY = #{$CHARACTER_AGILITY}"
+	puts "\t$CHARACTER.hp      = #{$CHARACTER.hp     }"
+	puts "\t$CHARACTER.mp 		 = #{$CHARACTER.mp     }"
+	puts "\t$CHARACTER.attack  = #{$CHARACTER.attack }"
+	puts "\t$CHARACTER.defense = #{$CHARACTER.defense}"
+	puts "\t$CHARACTER.agility = #{$CHARACTER.agility}"
+	new_line
+end	

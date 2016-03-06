@@ -5,13 +5,10 @@ require_relative 'battle_helper'
 require 'colorize'
 
 module MonsterFight
-
+	include BattleHelper
 	def monster_fight
-		random_token_generator(0..1)
-		@monster = $MONSTER_DATABASE[$RANDOM_TOKEN]
-		@monster_max_hp = $MONSTERS[$RANDOM_TOKEN][0]
-		@monster_max_mp = $MONSTERS[$RANDOM_TOKEN][1]
-		@monster_max_mp = 1 if @monster_max_mp == 0
+		load_monster
+
 		@character = $CHARACTER
 	
 		puts "\tHere comes a #{@monster.name.light_magenta}!"
@@ -19,7 +16,6 @@ module MonsterFight
 
 		bar_length = 48
 		while $BATTLE_START_TOKEN
-			include BattleHelper
 			display_scene
 
 			option_list(4,

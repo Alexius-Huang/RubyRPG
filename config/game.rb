@@ -2,6 +2,7 @@ require_relative 'config_helper'
 require_relative 'game/game_helper'
 require_relative 'game/explore'
 require_relative 'game/character'
+require_relative 'game/game_record/save_record'
 require 'colorize'
 
 module NewGame
@@ -18,7 +19,13 @@ module NewGame
 		$CHARACTER_ATTACK = 5
 		$CHARACTER_DEFENSE = 2
 		$CHARACTER_AGILITY = 3
+		
 		$PROCESS_GAME_TOKEN = true
+
+		path_name = "./config/game/game_record/player_records"
+		$RECORD_ID = Dir.new(path_name).count - 1
+		$RECORD_FILE_NAME = "player_#{$RECORD_ID}.txt"
+
 		new_line
 	end
 
@@ -50,6 +57,8 @@ module ProcessGame
 					explore
 				when 2
 				when 3
+					include SaveRecord
+					save_record
 				when 4
 					puts "\tBye Bye ~!"
 					new_line

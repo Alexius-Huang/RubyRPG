@@ -1,4 +1,28 @@
 module BattleHelper
+	def load_monster
+		random_token_generator(0..1)
+		$CURRENT_MONSTER = $MONSTER_DATABASE[$RANDOM_TOKEN]
+
+		@monster_name = $CURRENT_MONSTER[0]
+		@monster_hp = @monster_max_hp = $CURRENT_MONSTER[1]
+		@monster_mp = @monster_max_mp = $CURRENT_MONSTER[2]
+		@monster_exp = $CURRENT_MONSTER[3]
+		@monster_attack = $CURRENT_MONSTER[4]
+		@monster_defense = $CURRENT_MONSTER[5]
+		@monster_agility = $CURRENT_MONSTER[6]
+		@monster_max_mp = 1 if @monster_max_mp == 0
+
+
+		@monster = Monster.new(
+			@monster_name,
+			@monster_hp,
+			@monster_mp,
+			@monster_exp,
+			@monster_attack,
+			@monster_defense,
+			@monster_agility
+		)
+	end	
 
 	def battle
 		print "\tYou".light_yellow + " are trying to attack #{@monster.name.light_magenta}"
@@ -14,7 +38,7 @@ module BattleHelper
 			@character.exp += @monster.exp
 			new_line
 
-			refresh_monster_data
+			#refresh_monster_data
 			$BATTLE_START_TOKEN = false
 			return
 		end
@@ -72,7 +96,9 @@ module BattleHelper
 			when "light_red"
 				puts "\t[" + "|".light_red * bar + " " * bar_space + "]"
 			when "blue"
-				puts "\t[" + "|".blue * bar + " " * bar_space + "]"		
+				puts "\t[" + "|".blue * bar + " " * bar_space + "]"	
+			when "light_green"
+				puts "\t[" + "|".light_green * bar + " " * bar_space + "]"
 		end
 	end
 end

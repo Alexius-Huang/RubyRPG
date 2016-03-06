@@ -40,7 +40,7 @@ module GameHelper
 			when "light_red"
 				puts "\t[" + "|".light_red * bar + " " * bar_space + "]"
 			when "blue"
-				puts "\t[" + "|".blue * bar + " " * bar_space + "]"		
+				puts "\t[" + "|".blue * bar + " " * bar_space + "]"	
 			when "light_green"
 				puts "\t[" + "|".light_green * bar + " " * bar_space + "]"
 		end

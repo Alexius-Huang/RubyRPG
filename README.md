@@ -10,4 +10,4 @@ Ruby 2.0.0p643
 ---
 Clone the source code and enter the directory you cloned, type ```$ ruby main.rb``` to start playing.
 
-If there are any suggestions on refactoring codes, adding new features, modifying some content or more, it is very appreciate to contributed.
+If there are any suggestions on refactoring codes, adding new features, modifying some content or more, you are welcome to help and contribute!

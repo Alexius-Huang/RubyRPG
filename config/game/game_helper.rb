@@ -1,7 +1,7 @@
 module GameHelper
 
 	def show_current_state
-		puts "\t<<< #{$CHARACTER.name.light_yellow} >>>"
+		puts "\t " + "LEVEL #{$CHARACTER_LEVEL}".light_yellow + "  <<< #{$CHARACTER.name.light_yellow} >>>"
 
 		hp_display_length = $CHARACTER.hp.to_s.length + 1 + $CHARACTER_MAX_HP.to_s.length
 		mp_display_length = $CHARACTER.mp.to_s.length + 1 + $CHARACTER_MAX_MP.to_s.length

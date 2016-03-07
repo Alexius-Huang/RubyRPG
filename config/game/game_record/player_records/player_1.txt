@@ -1,0 +1,16 @@
+            <<< GAME RECORD FILE >>>
+--------------------------------------------------
+RECORD FILE NAME       : player_1.txt
+RECORD ID              : 
+CHARACTER NAME         : Max
+CHARACTER LEVEL        : 2
+CHARACTER CURRENT HP   : 20
+CHARACTER CURRENT MP   : 5
+CHARACTER CURRENT EXP  : 3
+CHARACTER MAX HP       : 20
+CHARACTER MAX MP       : 5
+CHARACTER MAX EXP      : 140
+CHARACTER ATTACK       : 5
+CHARACTER DEFENSE      : 2
+CHARACTER AGILITY      : 3
+--------------------------------------------------

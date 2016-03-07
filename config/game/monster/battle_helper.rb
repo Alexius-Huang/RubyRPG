@@ -1,3 +1,5 @@
+require_relative '../game_attribute/level_controller'
+
 module BattleHelper
 	def load_monster
 		random_token_generator(0..1)
@@ -38,6 +40,11 @@ module BattleHelper
 			@character.exp += @monster.exp
 			new_line
 
+			if @character.exp >= $CHARACTER_MAX_EXP
+				include LevelController
+				level_up
+			end
+
 			#refresh_monster_data
 			$BATTLE_START_TOKEN = false
 			return
@@ -66,10 +73,10 @@ module BattleHelper
 		return d.to_i
 	end
 
-	def refresh_monster_data
-		@monster.hp = $MONSTERS[$RANDOM_TOKEN][0]
-		@monster.mp = $MONSTERS[$RANDOM_TOKEN][1]
-	end
+#	def refresh_monster_data
+#		@monster.hp = $MONSTERS[$RANDOM_TOKEN][0]
+#		@monster.mp = $MONSTERS[$RANDOM_TOKEN][1]
+#	end
 
 	def display_scene(bar_length = 48)
 		striped_line

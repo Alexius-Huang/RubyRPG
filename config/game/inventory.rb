@@ -1,5 +1,12 @@
 module Inventory
 	def view_inventory
+		unless $CHARACTER_INVENTORY.any?
+			new_line
+			puts "\tThere are no items in your inventory = (".red
+			new_line
+			return
+		end
+
 		while true
 			new_line
 			striped_line
@@ -16,7 +23,7 @@ module Inventory
 			if $SELECT_TOKEN > $CHARACTER_INVENTORY.count.next || $SELECT_TOKEN < 1
 				puts "\tWrong Input! You Should Only Input 1 ~ #{$CHARACTER_INVENTORY.count} !".red
 				new_line
-			else 
+			else
 				new_line
 				break
 			end

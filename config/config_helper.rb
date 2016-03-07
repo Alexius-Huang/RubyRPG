@@ -15,7 +15,7 @@ end
 
 # NEW METHOD! #
 def push_item(item)
-	$CHARACTER_INVENTORY.push item
+	$CHARACTER_INVENTORY << item
 end
 
 [:potion].each do |method_name|

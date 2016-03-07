@@ -4,7 +4,6 @@ require_relative 'game/explore'
 require_relative 'game/character'
 require_relative 'game/inventory'
 require_relative 'game/game_items/potion'
-require_relative 'game/game_items/manufacturer'
 require_relative 'game/game_record/save_record'
 require_relative 'game/game_record/load_record'
 require_relative 'game/game_attribute/level_controller'
@@ -31,14 +30,15 @@ module NewGame
 		$CHARACTER_MONEY = $CHARACTER.money
 
 		$CHARACTER_INVENTORY = []
-		push_item manufacture_potion $POTION_DATABASE[0]
-		push_item manufacture_potion $POTION_DATABASE[1]
+		push_item $POTION_DATABASE[0]
+		push_item $POTION_DATABASE[1]
 		
 		$PROCESS_GAME_TOKEN = true
 
 		path_name = "./config/game/game_record/player_records"
 		$RECORD_ID = Dir.new(path_name).count - 1
 		$RECORD_FILE_NAME = "player_#{$RECORD_ID}.txt"
+		$RECORD_INVENTORY_ITEMS_FILE_NAME = "player_items_#{$RECORD_ID}.txt"
 
 		new_line
 	end
@@ -61,6 +61,10 @@ module LoadGame
 		@record_files = []
 		directory = Dir.new($RECORD_FOLDER_PATH)
 		directory.each { |f| @record_files << f unless ( f == "." || f == ".." ) }
+
+		@record_item_files = []
+		directory = Dir.new($RECORD_ITEMS_FOLDER_PATH)
+		directory.each { |f| @record_item_files << f unless ( f == "." || f == "..") }
 
 		unless @record_files.any?
 			puts "\tOops, there appears no records at all!"

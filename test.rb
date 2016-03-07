@@ -1,24 +1,22 @@
 #-------------- TESTING AREA ----------------#
 
-
-# TEST POTION CLASS FUNCTIONALITY
-#--------------------------------------------#
-
+# require_relative './config/config_helper'
+# require_relative './config/start'
+# require_relative './config/setup'
+# require_relative './config/game'
+# require_relative './config/game/game_helper'
 # require_relative './config/game/character'
+# require_relative './config/game/explore'
+# require_relative './config/game/inventory'
+# require_relative './config/game/item'
+# require_relative './config/game/game_attribute/level_controller'
 # require_relative './config/game/game_items/potion'
-
-# $CHARACTER = Character.new("Sample")
-# pd = $POTION_DATABASE[0]
-# p1 = Potion.new(name = pd[0], value = pd[1], content = pd[2], options = pd[3])
-# pd = $POTION_DATABASE[1]
-# p2 = Potion.new(name = pd[0], value = pd[1], content = pd[2], options = pd[3])
-
-# $CHARACTER_MAX_HP = 100
-# $CHARACTER_MAX_MP = 100
-
-# 5.times do
-# 	p1.use
-# 	p2.use
-# 	puts $CHARACTER.hp
-# 	puts $CHARACTER.mp
-# end
+# require_relative './config/game/game_items/accessory'
+# require_relative './config/game/game_items/armor'
+# require_relative './config/game/game_items/weapon'
+# require_relative './config/game/game_record/load_record'
+# require_relative './config/game/game_record/save_record'
+# require_relative './config/game/monster/monster'
+# require_relative './config/game/monster/monster_fight'
+# require_relative './config/game/monster/battle_helper'
+# require_relative './config/game/monster/escape_battle'

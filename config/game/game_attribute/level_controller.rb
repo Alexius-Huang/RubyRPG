@@ -21,7 +21,7 @@ module LevelController
 		striped_line
 		new_line
 		
-		puts "\tCongratulation!".blue + " You have level up to " + "#{$CHARACTER_LEVEL} ".light_yellow + "!!!"
+		puts "\tCongratulation!".light_blue + " You have leveled up to " + "#{$CHARACTER_LEVEL} ".light_yellow + "!!!"
 		
 		new_line
 		striped_line

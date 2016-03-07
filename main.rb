@@ -6,6 +6,7 @@ include StartEngine
 	while true
 		starter_menu
 		$RECORD_FOLDER_PATH = "./config/game/game_record/player_records"
+		$RECORD_ITEMS_FOLDER_PATH = "./config/game/game_record/player_items_records"
 		$LOAD_GAME_TOKEN = false
 		case $SELECT_TOKEN
 			when 1

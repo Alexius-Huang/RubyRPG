@@ -1,6 +1,7 @@
 module SaveRecord
 	def save_record
 		path_name = $RECORD_FOLDER_PATH + "/#{$RECORD_FILE_NAME}"
+		item_path_name = $RECORD_ITEMS_FOLDER_PATH + "/#{$RECORD_INVENTORY_ITEMS_FILE_NAME}"
 
 		if File.exist? path_name 
 			file = File.open(path_name, "w") 
@@ -8,6 +9,8 @@ module SaveRecord
 			file = File.new(path_name, "w")
 		end
 		
+		#--------- REMEMBER TO APPEND ATTRIBUTE -----------#
+
 		file.puts "            <<< GAME RECORD FILE >>>"
 		file.puts "-" * 50
 		file.puts "RECORD FILE NAME       : #{$RECORD_FILE_NAME}"
@@ -23,8 +26,54 @@ module SaveRecord
 		file.puts "CHARACTER ATTACK       : #{$CHARACTER_ATTACK}"
 		file.puts "CHARACTER DEFENSE      : #{$CHARACTER_DEFENSE}"
 		file.puts "CHARACTER AGILITY      : #{$CHARACTER_AGILITY}"
+		file.puts "CHARACTER MONEY        : #{$CHARACTER_MONEY}"
 		file.puts "-" * 50
-		
+
 		file.close
+
+		#--------------------------------------------------#
+
+		if File.exist? item_path_name 
+			file = File.open(item_path_name, "w") 
+		else 
+			file = File.new(item_path_name, "w")
+		end
+
+		#--------- REMEMBER TO APPEND ATTRIBUTE -----------#
+
+		file.puts "           <<< GAME IMPLICIT DATA >>>"
+		file.puts "-" * 50
+		file.puts "CHARACTER INVENTORY :"
+		$CHARACTER_INVENTORY.each.with_index do |item, index|
+			file.puts ""
+			file.puts "ITEM #{index + 1}"
+			file.puts "TYPE    => #{item.item_type}"
+			file.puts "ITEM_ID => #{item.id}"
+			file.puts ""
+		end
+		file.puts "-" * 50		
+
+		file.close
+
+		#-------------------------------------------------#
+
+		new_line
+		print "\tGame record saving"
+		delay
+		new_line
+		striped_line
+		dynamic_load("\t[" + "|".blue * 48 + "]", 0.005)
+		new_line
+		striped_line
+
+		new_line
+
+		striped_line
+		new_line
+		puts "\tSave Complete!"
+		new_line
+		striped_line
+
+		new_line
 	end
 end

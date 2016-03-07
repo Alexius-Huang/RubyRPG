@@ -1,3 +1,5 @@
+require_relative "../game_items/potion"
+
 module LoadRecord
 	def load_record
 		while $LOAD_GAME_TOKEN
@@ -50,8 +52,14 @@ module LoadRecord
 		new_line
 
 		$RECORD_FILE_NAME = @record_files[$SELECT_TOKEN - 1]
+		$RECORD_INVENTORY_ITEMS_FILE_NAME = @record_item_files[$SELECT_TOKEN - 1]
+		
 		path_name = $RECORD_FOLDER_PATH + "/#{$RECORD_FILE_NAME}"
+		item_path_name = $RECORD_ITEMS_FOLDER_PATH + "/#{$RECORD_INVENTORY_ITEMS_FILE_NAME}"
+		
 		@text = File.read(path_name).to_s.[] 153..-53
+		@item_text = File.read(item_path_name).to_s 
+
 		striped_line
 		puts "\t< CHARACTER INFO >"
 		@text.each_line { |line| puts "\t" + line }
@@ -82,6 +90,7 @@ module LoadRecord
 		$CHARACTER = Character.new
 
 		attribute_value = []
+		item_value = []
 
 		@text.each_line do |line|
 			data = ""
@@ -94,6 +103,34 @@ module LoadRecord
 			attribute_value << data.reverse
 		end
 
+		item_id = []
+		item_type = []
+
+		@item_text.each_line do |line|	
+			counter = 11
+			value = ""
+
+###READY FOR DEBIG
+
+			if !line.match(/ITEM_ID/).nil?
+				while line[counter] != nil
+					value += line[counter]
+					counter += 1
+				end
+				item_id << value.to_i
+			elsif !line.match(/TYPE/).nil?
+				while line[counter] != nil
+					value += line[counter]
+					counter += 1
+				end
+				item_type << value
+			end		
+		end
+
+		item_value = item_type.zip item_id 
+
+#--------- REMEMBER TO APPEND ATTRIBUTES ---------#
+
 		$CHARACTER.name = attribute_value[0]
 		$CHARACTER_LEVEL = attribute_value[1].to_i
 		$CHARACTER.hp = attribute_value[2].to_i
@@ -105,6 +142,15 @@ module LoadRecord
 		$CHARACTER.attack = $CHARACTER_ATTACK = attribute_value[8].to_i
 		$CHARACTER.defense = $CHARACTER_DEFENSE = attribute_value[9].to_i
 		$CHARACTER.agility = $CHARACTER_AGILITY = attribute_value[10].to_i
+		$CHARACTER.money = $CHARACTER_MONEY = attribute_value[11].to_i
+
+		# INITIALIZE INVENTROY
+		$CHARACTER_INVENTORY = []
+		
+		# APPEND ITEMS TO $CHARACTER_INVENTORY #
+		item_value.each { |type, id| push_item $POTION_DATABASE[id - 1] if type.chomp == "potion" }
+
+#-------------------------------------------------#
 
 		new_line
 		print "\tReady in 3"

@@ -2,6 +2,8 @@ require_relative 'config_helper'
 require_relative 'game/game_helper'
 require_relative 'game/explore'
 require_relative 'game/character'
+require_relative 'game/inventory'
+require_relative 'game/game_items/potion'
 require_relative 'game/game_record/save_record'
 require_relative 'game/game_record/load_record'
 require_relative 'game/game_attribute/level_controller'
@@ -10,13 +12,14 @@ require 'colorize'
 module NewGame
 	def new_game
 		include LevelController
+		include Manufacturer
 
 		story
 		# Setup character's parameters
 		puts "\tEnter your character's name ~"
 		print "\t>>> "
 
-		$CHARACTER = Character.new(gets.chomp, 20, 5, 0, 5, 2, 3)
+		$CHARACTER = Character.new(gets.chomp, 20, 5, 0, 5, 2, 3, 100)
 		$CHARACTER_LEVEL = 1
 		$CHARACTER_MAX_HP = 20
 		$CHARACTER_MAX_MP = 5
@@ -24,12 +27,18 @@ module NewGame
 		$CHARACTER_ATTACK = 5
 		$CHARACTER_DEFENSE = 2
 		$CHARACTER_AGILITY = 3
+		$CHARACTER_MONEY = $CHARACTER.money
+
+		$CHARACTER_INVENTORY = []
+		push_item $POTION_DATABASE[0]
+		push_item $POTION_DATABASE[1]
 		
 		$PROCESS_GAME_TOKEN = true
 
 		path_name = "./config/game/game_record/player_records"
 		$RECORD_ID = Dir.new(path_name).count - 1
 		$RECORD_FILE_NAME = "player_#{$RECORD_ID}.txt"
+		$RECORD_INVENTORY_ITEMS_FILE_NAME = "player_items_#{$RECORD_ID}.txt"
 
 		new_line
 	end
@@ -52,6 +61,10 @@ module LoadGame
 		@record_files = []
 		directory = Dir.new($RECORD_FOLDER_PATH)
 		directory.each { |f| @record_files << f unless ( f == "." || f == ".." ) }
+
+		@record_item_files = []
+		directory = Dir.new($RECORD_ITEMS_FOLDER_PATH)
+		directory.each { |f| @record_item_files << f unless ( f == "." || f == "..") }
 
 		unless @record_files.any?
 			puts "\tOops, there appears no records at all!"
@@ -82,6 +95,8 @@ module ProcessGame
 					random_token_generator(1..100)
 					explore
 				when 2
+					include Inventory
+					view_inventory
 				when 3
 					include SaveRecord
 					save_record

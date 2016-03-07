@@ -8,6 +8,8 @@ module SaveRecord
 			file = File.new(path_name, "w")
 		end
 		
+		#--------- REMEMBER TO APPEND ATTRIBUTE -----------#
+
 		file.puts "            <<< GAME RECORD FILE >>>"
 		file.puts "-" * 50
 		file.puts "RECORD FILE NAME       : #{$RECORD_FILE_NAME}"
@@ -23,8 +25,11 @@ module SaveRecord
 		file.puts "CHARACTER ATTACK       : #{$CHARACTER_ATTACK}"
 		file.puts "CHARACTER DEFENSE      : #{$CHARACTER_DEFENSE}"
 		file.puts "CHARACTER AGILITY      : #{$CHARACTER_AGILITY}"
+		file.puts "CHARACTER MONEY        : #{$CHARACTER_MONEY}"
 		file.puts "-" * 50
 		
+		#-------------------------------------------------#
+
 		file.close
 	end
 end

@@ -94,6 +94,8 @@ module LoadRecord
 			attribute_value << data.reverse
 		end
 
+#--------- REMEMBER TO APPEND ATTRIBUTES ---------#
+
 		$CHARACTER.name = attribute_value[0]
 		$CHARACTER_LEVEL = attribute_value[1].to_i
 		$CHARACTER.hp = attribute_value[2].to_i
@@ -105,6 +107,9 @@ module LoadRecord
 		$CHARACTER.attack = $CHARACTER_ATTACK = attribute_value[8].to_i
 		$CHARACTER.defense = $CHARACTER_DEFENSE = attribute_value[9].to_i
 		$CHARACTER.agility = $CHARACTER_AGILITY = attribute_value[10].to_i
+		$CHARACTER.money = $CHARACTER_MONEY = attribute_value[11].to_i
+
+#-------------------------------------------------#
 
 		new_line
 		print "\tReady in 3"

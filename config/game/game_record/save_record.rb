@@ -31,5 +31,24 @@ module SaveRecord
 		#-------------------------------------------------#
 
 		file.close
+
+		new_line
+		print "\tGame record saving"
+		delay
+		new_line
+		striped_line
+		dynamic_load("\t[" + "|".blue * 48 + "]", 0.005)
+		new_line
+		striped_line
+
+		new_line
+
+		striped_line
+		new_line
+		puts "\tSave Complete!"
+		new_line
+		striped_line
+
+		new_line
 	end
 end

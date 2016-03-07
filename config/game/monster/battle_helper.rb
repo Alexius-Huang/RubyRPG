@@ -12,6 +12,7 @@ module BattleHelper
 		@monster_attack = $CURRENT_MONSTER[4]
 		@monster_defense = $CURRENT_MONSTER[5]
 		@monster_agility = $CURRENT_MONSTER[6]
+		@monster_money = $CURRENT_MONSTER[7]
 		@monster_max_mp = 1 if @monster_max_mp == 0
 
 
@@ -22,7 +23,8 @@ module BattleHelper
 			@monster_exp,
 			@monster_attack,
 			@monster_defense,
-			@monster_agility
+			@monster_agility,
+			@monster_money
 		)
 	end	
 
@@ -36,14 +38,7 @@ module BattleHelper
 		
 		if @monster.hp <= 0
 			puts "\tThe #{@monster.name.light_magenta} is dead!"
-			puts "\tYou".light_yellow + " gained #{@monster.exp.to_s.light_green} EXP point!"
-			@character.exp += @monster.exp
-			new_line
-
-			if @character.exp >= $CHARACTER_MAX_EXP
-				include LevelController
-				level_up
-			end
+			battle_award
 
 			#refresh_monster_data
 			$BATTLE_START_TOKEN = false
@@ -77,6 +72,19 @@ module BattleHelper
 #		@monster.hp = $MONSTERS[$RANDOM_TOKEN][0]
 #		@monster.mp = $MONSTERS[$RANDOM_TOKEN][1]
 #	end
+
+	def battle_award
+		puts "\tYou".light_yellow + " gained" + " #{@monster.exp.to_s} EXP points".light_green + " !"
+		@character.exp += @monster.exp
+		puts "\tYou".light_yellow + " gained" + " $ #{@monster.money.to_s}".light_yellow + " !"
+		@character.money = $CHARACTER_MONEY += @monster.money
+		new_line
+
+		if @character.exp >= $CHARACTER_MAX_EXP
+			include LevelController
+			level_up
+		end
+	end
 
 	def display_scene(bar_length = 48)
 		striped_line

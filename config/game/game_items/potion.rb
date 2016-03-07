@@ -16,9 +16,9 @@ end
 
 $POTION_DATABASE = [
 	[ "Small Health Potion", 15,
-		"Small health potion which can heal small amount of character's health.",
+		"Small health potion which can heal small amount of character's health. It can heal 50 HP points.",
 		{ heal_HP: 50 }],
 	[ "Small Mana Potion", 20,
-		"Small mana potion which can recover small amount of character's mana.",
+		"Small mana potion which can recover small amount of character's mana. It can recover 30 MP points.",
 		{ heal_MP: 30 }]
 ]

@@ -6,7 +6,6 @@ def striped_line
 	puts "\t" + "-" * 50
 end
 
-# New Method #
 def dynamic_load(text, time)
 	text.length.times do |num|
 		print text[num]
@@ -14,16 +13,27 @@ def dynamic_load(text, time)
 	end
 end
 
+# NEW METHOD! #
+def push_item(item)
+	$CHARACTER_INVENTORY.push item
+end
+
+[:potion].each do |method_name|
+	define_method method_name do |index|
+		case method_name
+			when :potion then $POTION_DATABASE[index]
+		end
+	end
+end
+
 def option_list(num, *option)
 	while true
 		puts "\tPlease Enter The Option :"
-		(1..num).each do |n|
-			puts "\t<#{n}> #{option[n - 1]}"
-		end
+		(1..num).each { |n| puts "\t<#{n}> #{option[n - 1]}" }
 		print "\t>>> "
 		$SELECT_TOKEN = gets.to_i
 		if $SELECT_TOKEN > num || $SELECT_TOKEN < 1 
-			puts "\tWrong Input! You Should Only Input 1 ~ #{num} !"
+			puts "\tWrong Input! You Should Only Input 1 ~ #{num} !".red
 			new_line
 		else
 			new_line

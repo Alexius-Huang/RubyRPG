@@ -2,6 +2,9 @@ require_relative 'config_helper'
 require_relative 'game/game_helper'
 require_relative 'game/explore'
 require_relative 'game/character'
+require_relative 'game/inventory'
+require_relative 'game/game_items/potion'
+require_relative 'game/game_items/manufacturer'
 require_relative 'game/game_record/save_record'
 require_relative 'game/game_record/load_record'
 require_relative 'game/game_attribute/level_controller'
@@ -10,6 +13,7 @@ require 'colorize'
 module NewGame
 	def new_game
 		include LevelController
+		include Manufacturer
 
 		story
 		# Setup character's parameters
@@ -25,6 +29,10 @@ module NewGame
 		$CHARACTER_DEFENSE = 2
 		$CHARACTER_AGILITY = 3
 		$CHARACTER_MONEY = $CHARACTER.money
+
+		$CHARACTER_INVENTORY = []
+		push_item manufacture_potion $POTION_DATABASE[0]
+		push_item manufacture_potion $POTION_DATABASE[1]
 		
 		$PROCESS_GAME_TOKEN = true
 
@@ -83,6 +91,8 @@ module ProcessGame
 					random_token_generator(1..100)
 					explore
 				when 2
+					include Inventory
+					view_inventory
 				when 3
 					include SaveRecord
 					save_record

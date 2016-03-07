@@ -4,10 +4,13 @@ require_relative 'game/explore'
 require_relative 'game/character'
 require_relative 'game/game_record/save_record'
 require_relative 'game/game_record/load_record'
+require_relative 'game/game_attribute/level_controller'
 require 'colorize'
 
 module NewGame
 	def new_game
+		include LevelController
+
 		story
 		# Setup character's parameters
 		puts "\tEnter your character's name ~"
@@ -17,7 +20,7 @@ module NewGame
 		$CHARACTER_LEVEL = 1
 		$CHARACTER_MAX_HP = 20
 		$CHARACTER_MAX_MP = 5
-		$CHARACTER_MAX_EXP = 10
+		$CHARACTER_MAX_EXP = require_exp($CHARACTER_LEVEL)
 		$CHARACTER_ATTACK = 5
 		$CHARACTER_DEFENSE = 2
 		$CHARACTER_AGILITY = 3

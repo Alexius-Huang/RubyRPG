@@ -1,11 +1,12 @@
 require_relative '../game_attribute/level_controller'
+require_relative '../../config_helper'
 
 module BattleHelper
 
 	def character_attack
 		print "\tYou".light_yellow + " are trying to attack #{@monster.name.light_magenta}"
-		@damage = damage(@character, @monster)
 		delay
+		@damage = damage(@character, @monster)
 		puts "\tYou".light_yellow + " caused #{@damage.to_s.light_red} damage on #{@monster.name.light_magenta}!" if @damage > 0
 		puts "\tThe monster does not being harm..." if @damage <= 0
 		@monster.hp -= @damage
@@ -22,8 +23,8 @@ module BattleHelper
 
 	def monster_attack
 		print "\t#{@monster.name.light_magenta} is ready attacking " + "you".light_yellow + "."
-		@damage = damage(@monster, @character)
 		delay
+		@damage = damage(@monster, @character)
 		puts "\tYou".light_yellow + "'ve got #{@damage.to_s.light_red} damage from #{@monster.name.light_magenta}!" if @damage > 0
 		puts "\tYou".light_yellow + " dodged the attack from #{@monster.name.light_magenta}!" if @damage <= 0 
 		@character.hp -= @damage
@@ -48,7 +49,15 @@ module BattleHelper
 	end
 
 	def damage(active, passive)
-		d = (active.attack * Random.new.rand(0.6..1.0)) - (passive.defense * Random.new.rand(0.6..1.0))
+		random_token_generator(1.0..100.0)
+		if (1.0..active.luck.to_f).include? $RANDOM_TOKEN.round(2)
+			new_line
+			puts "\tOh My CRITICAL ATTACK!".red
+			new_line
+			d = (active.attack * Rational(active.critical_attack, 100) * Random.new.rand(0.9..1.0)) - (passive.defense * Random.new.rand(0.6..1.0))
+		else
+			d = (active.attack * Random.new.rand(0.6..1.0)) - (passive.defense * Random.new.rand(0.7..1.0))
+		end
 		return 0 if d < 0
 		d.to_i
 	end

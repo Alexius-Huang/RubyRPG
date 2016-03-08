@@ -56,6 +56,7 @@ module SaveRecord
 		file.close
 
 		#-------------------------------------------------#
+		system 'clear'
 
 		new_line
 		print "\tGame record saving"

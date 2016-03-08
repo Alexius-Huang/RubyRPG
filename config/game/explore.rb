@@ -3,6 +3,8 @@ require_relative 'monster/monster_fight'
 
 module Explore
 	def explore
+		system 'clear'
+		new_line
 		case $RANDOM_TOKEN
 			when  1...33
 				include MonsterFight

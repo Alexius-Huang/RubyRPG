@@ -19,6 +19,9 @@ module StartEngine
 	end
 
 	def exit
+		system 'clear'
+		new_line
+
 		puts "\tBye Bye ~!"
 		new_line
 		$QUIT_GAME_TOKEN = true

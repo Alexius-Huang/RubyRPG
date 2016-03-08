@@ -1,0 +1,17 @@
+            <<< GAME RECORD FILE >>>
+--------------------------------------------------
+RECORD FILE NAME       : player_3.txt
+RECORD ID              : 3
+CHARACTER NAME         : Maxwell
+CHARACTER LEVEL        : 1
+CHARACTER CURRENT HP   : 16
+CHARACTER CURRENT MP   : 5
+CHARACTER CURRENT EXP  : 5
+CHARACTER MAX HP       : 20
+CHARACTER MAX MP       : 5
+CHARACTER MAX EXP      : 30
+CHARACTER ATTACK       : 5
+CHARACTER DEFENSE      : 2
+CHARACTER AGILITY      : 3
+CHARACTER MONEY        : 104
+--------------------------------------------------

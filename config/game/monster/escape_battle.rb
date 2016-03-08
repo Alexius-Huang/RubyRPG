@@ -2,6 +2,9 @@ require_relative '../../config_helper'
 
 module EscapeBattle
 	def escape
+		system 'clear'
+		new_line
+
 		print "\tYou".light_yellow + " are trying to escape"
 		delay
 		new_line
@@ -41,6 +44,6 @@ module EscapeBattle
 	def damage(active, passive)
 		d = (active.attack * Random.new.rand(0.6..1.0)) - (passive.defense * Random.new.rand(0.6..1.0))
 		return 0 if d < 0
-		return d.to_i
+		d.to_i
 	end
 end

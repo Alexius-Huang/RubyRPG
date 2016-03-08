@@ -1,6 +1,10 @@
 require_relative 'config/start'
 require_relative 'config/game'
+require_relative './config/config_helper'
 include StartEngine
+
+system 'clear'
+new_line
 
 #---------------------------------#
 	while true
@@ -8,6 +12,8 @@ include StartEngine
 		$RECORD_FOLDER_PATH = "./config/game/game_record/player_records"
 		$RECORD_ITEMS_FOLDER_PATH = "./config/game/game_record/player_items_records"
 		$LOAD_GAME_TOKEN = false
+		system "clear" 
+		new_line
 		case $SELECT_TOKEN
 			when 1
 				include NewGame

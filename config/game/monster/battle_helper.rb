@@ -1,37 +1,8 @@
 require_relative '../game_attribute/level_controller'
 
 module BattleHelper
-	def load_monster
-		random_token_generator(0..1)
-		$CURRENT_MONSTER = $MONSTER_DATABASE[$RANDOM_TOKEN]
 
-		@monster_name = $CURRENT_MONSTER[0]
-		@monster_hp = @monster_max_hp = $CURRENT_MONSTER[1]
-		@monster_mp = @monster_max_mp = $CURRENT_MONSTER[2]
-		@monster_exp = $CURRENT_MONSTER[3]
-		@monster_attack = $CURRENT_MONSTER[4]
-		@monster_defense = $CURRENT_MONSTER[5]
-		@monster_agility = $CURRENT_MONSTER[6]
-		@monster_money = $CURRENT_MONSTER[7]
-		@monster_max_mp = 1 if @monster_max_mp == 0
-
-
-		@monster = Monster.new(
-			@monster_name,
-			@monster_hp,
-			@monster_mp,
-			@monster_exp,
-			@monster_attack,
-			@monster_defense,
-			@monster_agility,
-			@monster_money
-		)
-	end	
-
-	def battle
-		system 'clear'
-		new_line
-		
+	def character_attack
 		print "\tYou".light_yellow + " are trying to attack #{@monster.name.light_magenta}"
 		@damage = damage(@character, @monster)
 		delay
@@ -47,9 +18,9 @@ module BattleHelper
 			$BATTLE_START_TOKEN = false
 			return
 		end
-		
-		sleep 0.5
+	end
 
+	def monster_attack
 		print "\t#{@monster.name.light_magenta} is ready attacking " + "you".light_yellow + "."
 		@damage = damage(@monster, @character)
 		delay
@@ -61,20 +32,7 @@ module BattleHelper
 			puts "\tOh no! You are dead!".light_red
 			raise CharacterDeadError
 		end
-
-		new_line
 	end
-
-	def damage(active, passive)
-		d = (active.attack * Random.new.rand(0.6..1.0)) - (passive.defense * Random.new.rand(0.6..1.0))
-		return 0 if d < 0
-		d.to_i
-	end
-
-#	def refresh_monster_data
-#		@monster.hp = $MONSTERS[$RANDOM_TOKEN][0]
-#		@monster.mp = $MONSTERS[$RANDOM_TOKEN][1]
-#	end
 
 	def battle_award
 		system 'clear'
@@ -90,6 +48,12 @@ module BattleHelper
 			include LevelController
 			level_up
 		end
+	end
+
+	def damage(active, passive)
+		d = (active.attack * Random.new.rand(0.6..1.0)) - (passive.defense * Random.new.rand(0.6..1.0))
+		return 0 if d < 0
+		d.to_i
 	end
 
 	def display_scene(bar_length = 48)

@@ -1,4 +1,5 @@
 require_relative '../../config_helper'
+require_relative 'battle_helper'
 
 module EscapeBattle
 	def escape
@@ -19,31 +20,14 @@ module EscapeBattle
 			$BATTLE_START_TOKEN = false
 			return
 		else
+			include BattleHelper
 			puts "\tThe monster #{@monster.name.light_magenta} unfortunately"
 			puts "\tcatched " + "you".light_yellow + "!"
 			new_line
-			print "\tThe #{@monster.name.light_magenta} is ready to attack you"
-			delay
-
-			@damage = damage(@monster, @character)
-
-			puts "\tYou".light_yellow + "'ve got #{@damage.to_s.light_red} damage from #{@monster.name.light_magenta}!" if @damage > 0
-			puts "\tYou".light_yellow + " dodged the attack from #{@monster.name.light_magenta}!" if @damage <= 0
-			@character.hp -= @damage
-
-
-			if @character.hp <= 0
-				puts "\tOh no! You are dead!".light_red
-				raise CharacterDeadError
-			end
+			monster_attack
 		end
 		
 		new_line
 	end
 
-	def damage(active, passive)
-		d = (active.attack * Random.new.rand(0.6..1.0)) - (passive.defense * Random.new.rand(0.6..1.0))
-		return 0 if d < 0
-		d.to_i
-	end
 end

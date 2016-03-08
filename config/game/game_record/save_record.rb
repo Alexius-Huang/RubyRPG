@@ -26,6 +26,8 @@ module SaveRecord
 		file.puts "CHARACTER ATTACK       : #{$CHARACTER_ATTACK}"
 		file.puts "CHARACTER DEFENSE      : #{$CHARACTER_DEFENSE}"
 		file.puts "CHARACTER AGILITY      : #{$CHARACTER_AGILITY}"
+		file.puts "CHARACTER CRITICAL ATK : #{$CHARACTER_CRITICAL_ATTACK_RATE}"
+		file.puts "CHARACTER LUCK         : #{$CHARACTER_LUCK}"
 		file.puts "CHARACTER MONEY        : #{$CHARACTER_MONEY}"
 		file.puts "-" * 50
 
@@ -51,7 +53,7 @@ module SaveRecord
 			file.puts "ITEM_ID => #{item.id}"
 			file.puts ""
 		end
-		file.puts "-" * 50		
+		file.puts "-" * 50
 
 		file.close
 

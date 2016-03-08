@@ -18,7 +18,7 @@ module NewGame
 		puts "\tEnter your character's name ~"
 		print "\t>>> "
 
-		$CHARACTER = Character.new(gets.chomp, 20, 5, 0, 5, 2, 3, 100)
+		$CHARACTER = Character.new(gets.chomp, 20, 5, 0, 5, 2, 3, 120, 3, 100)
 		$CHARACTER_LEVEL = 1
 		$CHARACTER_MAX_HP = 20
 		$CHARACTER_MAX_MP = 5
@@ -26,6 +26,8 @@ module NewGame
 		$CHARACTER_ATTACK = 5
 		$CHARACTER_DEFENSE = 2
 		$CHARACTER_AGILITY = 3
+		$CHARACTER_CRITICAL_ATTACK_RATE = 120
+		$CHARACTER_LUCK = 3
 		$CHARACTER_MONEY = $CHARACTER.money
 
 		$CHARACTER_INVENTORY = []

@@ -161,6 +161,9 @@ module LoadRecord
 		delay
 		new_line
 
+		system 'clear'
+		new_line
+
 		$PROCESS_GAME_TOKEN = true
 	
 	end

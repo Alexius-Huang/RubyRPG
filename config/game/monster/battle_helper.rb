@@ -29,6 +29,9 @@ module BattleHelper
 	end	
 
 	def battle
+		system 'clear'
+		new_line
+		
 		print "\tYou".light_yellow + " are trying to attack #{@monster.name.light_magenta}"
 		@damage = damage(@character, @monster)
 		delay
@@ -65,7 +68,7 @@ module BattleHelper
 	def damage(active, passive)
 		d = (active.attack * Random.new.rand(0.6..1.0)) - (passive.defense * Random.new.rand(0.6..1.0))
 		return 0 if d < 0
-		return d.to_i
+		d.to_i
 	end
 
 #	def refresh_monster_data
@@ -74,6 +77,9 @@ module BattleHelper
 #	end
 
 	def battle_award
+		system 'clear'
+		new_line
+
 		puts "\tYou".light_yellow + " gained" + " #{@monster.exp.to_s} EXP points".light_green + " !"
 		@character.exp += @monster.exp
 		puts "\tYou".light_yellow + " gained" + " $ #{@monster.money.to_s}".light_yellow + " !"

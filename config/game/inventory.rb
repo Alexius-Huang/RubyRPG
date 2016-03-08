@@ -30,12 +30,11 @@ module Inventory
 							when :heal_MP then "#{value} MP points".blue + " !"
 						end
 					end
+					$CHARACTER_INVENTORY.delete_at $CHARACTER_INVENTORY.index @item
 					monster_attack if $BATTLE_START_TOKEN
 				end
-				
 			when 2 then return
 		end
-
 	end
 
 	def view_specific_item(item)

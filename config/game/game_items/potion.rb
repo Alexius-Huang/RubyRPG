@@ -13,6 +13,8 @@ class Potion < Item
 	def use
 		($CHARACTER.hp + @options[:heal_HP] > $CHARACTER_MAX_HP ? $CHARACTER.hp = $CHARACTER_MAX_HP : $CHARACTER.hp += @options[:heal_HP] ) if @options.include? :heal_HP
 		($CHARACTER.hp + @options[:heal_MP] > $CHARACTER_MAX_MP ? $CHARACTER.mp = $CHARACTER_MAX_MP : $CHARACTER.mp += @options[:heal_MP] ) if @options.include? :heal_MP
+		
+		yield
 	end
 end
 

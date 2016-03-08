@@ -96,8 +96,6 @@ module ProcessGame
 				when 2
 					include Inventory
 					view_inventory
-					system 'clear'
-					new_line
 				when 3
 					include SaveRecord
 					save_record

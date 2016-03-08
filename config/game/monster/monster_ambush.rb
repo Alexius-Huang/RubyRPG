@@ -33,7 +33,6 @@ module MonsterAmbush
 				when 3
 					include Inventory
 					view_inventory
-					system 'clear'
 					new_line
 				when 4
 					include EscapeBattle

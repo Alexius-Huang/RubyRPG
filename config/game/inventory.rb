@@ -1,51 +1,44 @@
+require_relative 'inventory_helper'
+require_relative './monster/battle_helper'
+
 module Inventory
+	include InventoryHelper
 	def view_inventory
-		unless $CHARACTER_INVENTORY.any?
-			new_line
-			puts "\tThere are no items in your inventory = (".red
-			new_line
-			return
-		end
+		system 'clear'
 
-		while true
-			new_line
-			striped_line
-			puts "\t<<< " + "Inventory".light_yellow + " >>>"
-			$CHARACTER_INVENTORY.each.with_index { |item, index| puts "\t<#{index.next}> " + "#{item.name}".light_cyan }
-			puts "\t<#{$CHARACTER_INVENTORY.count + 1}> Go back..."
-			striped_line
-			new_line
-
-			# Select Item
-			puts "\tEnter Option to View The Item :"
-			print "\t>>> "
-			$SELECT_TOKEN = gets.to_i
-			if $SELECT_TOKEN > $CHARACTER_INVENTORY.count.next || $SELECT_TOKEN < 1
-				puts "\tWrong Input! You Should Only Input 1 ~ #{$CHARACTER_INVENTORY.count} !".red
-				new_line
-			else
-				new_line
-				break
-			end
-		end
+		check_inventory
+		inventory_list_and_prompt #Will Return the $SELECT_TOKEN
 
 		return if $SELECT_TOKEN == $CHARACTER_INVENTORY.count.next
 		
 		@item = $CHARACTER_INVENTORY[$SELECT_TOKEN - 1]
-		view_item(@item)
+		
+		view_specific_item(@item)
+
 		option_list(2,
 			"Use #{@item.name}",
 			"Go back..."
 		)
 		case $SELECT_TOKEN
 			when 1
-				puts "Under Construction..."
+				@item.use do  # 'use' function with yield block 
+					print "\tUsing" + " #{@item.name}".light_cyan
+					delay
+					@item.options.each do |key, value|
+						puts "\tYou".light_yellow + " have recovered " + case key
+							when :heal_HP then "#{value} HP points".light_red + " !"
+							when :heal_MP then "#{value} MP points".blue + " !"
+						end
+					end
+					monster_attack if $BATTLE_START_TOKEN
+				end
+				
 			when 2 then return
 		end
 
 	end
 
-	def view_item(item)
+	def view_specific_item(item)
 		new_line
 		striped_line
 		puts "\t<<< " + item.name.light_cyan + " >>>"
@@ -54,7 +47,6 @@ module Inventory
 		words = item.content.split
 		line = check = ""
 		print "\tCONTENT  | "
-
 
 		words.each do |word|
 			check += word + " "
@@ -68,6 +60,7 @@ module Inventory
 
 			puts line if word == words.last
 		end
+
 		striped_line
 		new_line
 	end

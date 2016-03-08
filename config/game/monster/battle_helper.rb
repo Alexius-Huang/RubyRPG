@@ -35,9 +35,6 @@ module BattleHelper
 	end
 
 	def battle_award
-		system 'clear'
-		new_line
-
 		puts "\tYou".light_yellow + " gained" + " #{@monster.exp.to_s} EXP points".light_green + " !"
 		@character.exp += @monster.exp
 		puts "\tYou".light_yellow + " gained" + " $ #{@monster.money.to_s}".light_yellow + " !"

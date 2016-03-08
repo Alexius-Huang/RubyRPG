@@ -142,7 +142,9 @@ module LoadRecord
 		$CHARACTER.attack = $CHARACTER_ATTACK = attribute_value[8].to_i
 		$CHARACTER.defense = $CHARACTER_DEFENSE = attribute_value[9].to_i
 		$CHARACTER.agility = $CHARACTER_AGILITY = attribute_value[10].to_i
-		$CHARACTER.money = $CHARACTER_MONEY = attribute_value[11].to_i
+		$CHARACTER.critical_attack = $CHARACTER_CRITICAL_ATTACK_RATE = attribute_value[11].to_i
+		$CHARACTER.luck = $CHARACTER_LUCK = attribute_value[12].to_i
+		$CHARACTER.money = $CHARACTER_MONEY = attribute_value[13].to_i
 
 		# INITIALIZE INVENTROY
 		$CHARACTER_INVENTORY = []

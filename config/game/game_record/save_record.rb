@@ -11,23 +11,25 @@ module SaveRecord
 		
 		#--------- REMEMBER TO APPEND ATTRIBUTE -----------#
 
-		file.puts "            <<< GAME RECORD FILE >>>"
-		file.puts "-" * 50
-		file.puts "RECORD FILE NAME       : #{$RECORD_FILE_NAME}"
-		file.puts "RECORD ID              : #{$RECORD_ID}"
-		file.puts "CHARACTER NAME         : #{$CHARACTER.name}"
-		file.puts "CHARACTER LEVEL        : #{$CHARACTER_LEVEL}"
-		file.puts "CHARACTER CURRENT HP   : #{$CHARACTER.hp}"
-		file.puts "CHARACTER CURRENT MP   : #{$CHARACTER.mp}"
-		file.puts "CHARACTER CURRENT EXP  : #{$CHARACTER.exp}"
-		file.puts "CHARACTER MAX HP       : #{$CHARACTER_MAX_HP}"
-		file.puts "CHARACTER MAX MP       : #{$CHARACTER_MAX_MP}"
-		file.puts "CHARACTER MAX EXP      : #{$CHARACTER_MAX_EXP}"
-		file.puts "CHARACTER ATTACK       : #{$CHARACTER_ATTACK}"
-		file.puts "CHARACTER DEFENSE      : #{$CHARACTER_DEFENSE}"
-		file.puts "CHARACTER AGILITY      : #{$CHARACTER_AGILITY}"
-		file.puts "CHARACTER MONEY        : #{$CHARACTER_MONEY}"
-		file.puts "-" * 50
+		dynamic_write file, "            <<< GAME RECORD FILE >>>"
+		dynamic_write file, "-" * 50
+		dynamic_write file, "RECORD FILE NAME       : #{$RECORD_FILE_NAME}"
+		dynamic_write file, "RECORD ID              : #{$RECORD_ID}"
+		dynamic_write file, "CHARACTER NAME         : #{$CHARACTER.name}"
+		dynamic_write file, "CHARACTER LEVEL        : #{$CHARACTER_LEVEL}"
+		dynamic_write file, "CHARACTER CURRENT HP   : #{$CHARACTER.hp}"
+		dynamic_write file, "CHARACTER CURRENT MP   : #{$CHARACTER.mp}"
+		dynamic_write file, "CHARACTER CURRENT EXP  : #{$CHARACTER.exp}"
+		dynamic_write file, "CHARACTER MAX HP       : #{$CHARACTER_MAX_HP}"
+		dynamic_write file, "CHARACTER MAX MP       : #{$CHARACTER_MAX_MP}"
+		dynamic_write file, "CHARACTER MAX EXP      : #{$CHARACTER_MAX_EXP}"
+		dynamic_write file, "CHARACTER ATTACK       : #{$CHARACTER_ATTACK}"
+		dynamic_write file, "CHARACTER DEFENSE      : #{$CHARACTER_DEFENSE}"
+		dynamic_write file, "CHARACTER AGILITY      : #{$CHARACTER_AGILITY}"
+		dynamic_write file, "CHARACTER CRITICAL ATK : #{$CHARACTER_CRITICAL_ATTACK_RATE}"
+		dynamic_write file, "CHARACTER LUCK         : #{$CHARACTER_LUCK}"
+		dynamic_write file, "CHARACTER MONEY        : #{$CHARACTER_MONEY}"
+		dynamic_write file, "-" * 50
 
 		file.close
 
@@ -51,12 +53,11 @@ module SaveRecord
 			file.puts "ITEM_ID => #{item.id}"
 			file.puts ""
 		end
-		file.puts "-" * 50		
+		file.puts "-" * 50
 
 		file.close
 
 		#-------------------------------------------------#
-		system 'clear'
 
 		new_line
 		print "\tGame record saving"
@@ -71,10 +72,15 @@ module SaveRecord
 
 		striped_line
 		new_line
-		puts "\tSave Complete!"
+		puts "\tSave Complete!".light_yellow
 		new_line
 		striped_line
 
 		new_line
+	end
+
+	def dynamic_write(file, text)
+		file.puts text
+		dynamic_load "\t" + text + "\n", 0.005
 	end
 end

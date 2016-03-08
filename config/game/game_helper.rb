@@ -9,6 +9,8 @@ module GameHelper
 		attack_display_length = $CHARACTER_ATTACK.to_s.length
 		defense_display_length = $CHARACTER_DEFENSE.to_s.length
 		agility_display_length = $CHARACTER_AGILITY.to_s.length
+		critical_display_length = $CHARACTER_CRITICAL_ATTACK_RATE.to_s.length + " %".length
+		luck_display_length = $CHARACTER_LUCK.to_s.length
 		money_display_length = $CHARACTER_MONEY.to_s.length
 
 		hp_space_display_length = 40 - hp_display_length
@@ -17,6 +19,8 @@ module GameHelper
 		attack_space_display_length = 40 - attack_display_length
 		defense_space_display_length = 40 - defense_display_length
 		agility_space_display_length = 40 - agility_display_length
+		critical_space_display_length = 40 - critical_display_length
+		luck_space_display_length = 40 - luck_display_length
 		money_space_display_length = 40 - money_display_length
 
 		bar_length = 48
@@ -33,6 +37,8 @@ module GameHelper
 		puts "\tATTACK   |" + " " * attack_space_display_length + "#{$CHARACTER_ATTACK.to_s.red}"
 		puts "\tDEFENSE  |" + " " * defense_space_display_length + "#{$CHARACTER_DEFENSE.to_s.light_cyan}"
 		puts "\tAGILITY  |" + " " * agility_space_display_length + "#{$CHARACTER_AGILITY.to_s.light_magenta}"
+		puts "\tCRITICAL |" + " " * critical_space_display_length + "#{$CHARACTER_CRITICAL_ATTACK_RATE.to_s} %".red
+    puts "\tLUCK     |" + " " * luck_space_display_length + "#{$CHARACTER_LUCK.to_s.light_green}"
 		puts "\tMONEY 	 |" + " " *	(money_space_display_length - 2) + "$ #{$CHARACTER_MONEY.to_s}".light_yellow
 	end
 	

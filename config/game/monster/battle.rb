@@ -26,7 +26,9 @@ module Battle
 		@monster_attack = $CURRENT_MONSTER[4]
 		@monster_defense = $CURRENT_MONSTER[5]
 		@monster_agility = $CURRENT_MONSTER[6]
-		@monster_money = $CURRENT_MONSTER[7]
+		@monster_critical_attack_rate = $CURRENT_MONSTER[7]
+		@monster_luck = $CURRENT_MONSTER[8]
+		@monster_money = $CURRENT_MONSTER[9]
 		@monster_max_mp = 1 if @monster_max_mp == 0
 
 
@@ -38,6 +40,8 @@ module Battle
 			@monster_attack,
 			@monster_defense,
 			@monster_agility,
+			@monster_critical_attack_rate,
+			@monster_luck,
 			@monster_money
 		)
 	end	
